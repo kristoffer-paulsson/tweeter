@@ -1,3 +1,14 @@
-runtime: python37
 
+runtime: python37
+env: standard
 instance_class: F1
+handlers:
+  - url: '.*'
+    script: auto
+    login: required
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+  min_idle_instances: 0
+  idle_timeout: 1m
+  max_concurrent_requests: 2
