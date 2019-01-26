@@ -1,0 +1,10 @@
+cron:
+- description: "Retweet bible quotes"
+  url: /retweet/quotes/12
+  schedule: every 2 hours
+- description: "Retweet posts and videos"
+  url: /retweet/teachings/12
+  schedule: every 2 hours
+- description: "Retweet TNG book"
+  url: /retweet/promo/2
+  schedule: every 12 hours
