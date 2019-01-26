@@ -40,6 +40,8 @@ def tweeter(tlist, ttimes='1'):
     time.sleep(5)
     twitter.statuses.retweet(id=tweet)
 
+    return ''
+
 
 if __name__ == '__main__':
     app.run()
