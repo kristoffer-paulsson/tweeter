@@ -5,19 +5,17 @@ from random import Random
 
 import yaml
 from twitter import Twitter, OAuth
-from flask import Flask
+from flask import Flask, request, abort
 
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello():
-    return 'Hello world!'
-
-
 @app.route('/retweet/<tlist>/<ttimes>')
 def tweeter(tlist, ttimes='1'):
+    if 'X-Appengine-Cron' not in request.headers:
+        return abort(400)
+
     ttimes = int(ttimes) if int(ttimes) > 0 else 1
 
     with open('./config.yaml', 'r') as stream:
@@ -40,7 +38,7 @@ def tweeter(tlist, ttimes='1'):
     time.sleep(5)
     twitter.statuses.retweet(id=tweet)
 
-    return ''
+    return abort(200)
 
 
 if __name__ == '__main__':

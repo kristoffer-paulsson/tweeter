@@ -3,11 +3,10 @@ runtime: python37
 env: standard
 instance_class: F1
 handlers:
-  - url: '.*'
+  - url: '/retweet/.*'
     script: auto
-    login: required
+    # login: required
+    secure: always
 automatic_scaling:
-  min_instances: 0
   max_instances: 1
-  min_idle_instances: 0
   max_concurrent_requests: 2
