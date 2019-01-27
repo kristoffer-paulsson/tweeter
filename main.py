@@ -38,7 +38,7 @@ def tweeter(tlist, ttimes='1'):
     time.sleep(5)
     twitter.statuses.retweet(id=tweet)
 
-    return ''
+    return '', 200
 
 
 if __name__ == '__main__':
