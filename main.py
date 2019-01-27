@@ -28,7 +28,7 @@ def tweeter(tlist, ttimes='1'):
     Random(today.year + int(ttimes/24*today.hour)).shuffle(tweets)
     regex = re.compile('\/([\d].*)$')
     tweet = regex.findall(
-        tweets[len(tweets) & today.timetuple().tm_yday])[0]
+        tweets[len(tweets) & (today.timetuple().tm_yday-1)])[0]
 
     twitter = Twitter(auth=OAuth(
         config['token'], config['token_secret'],
