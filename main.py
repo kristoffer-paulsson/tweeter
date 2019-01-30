@@ -1,7 +1,6 @@
 import datetime
 import time
 import re
-import json
 from random import Random
 
 import yaml
@@ -44,8 +43,8 @@ def tweeter(tlist, ttimes='1'):
 
 @app.route('/shoutout')
 def shoutout():
-    if 'X-Appengine-Cron' not in request.headers:
-        return abort(400)
+    # if 'X-Appengine-Cron' not in request.headers:
+    #    return abort(400)
 
     with open('./config.yaml', 'r') as stream:
         config = yaml.load(stream)
@@ -54,8 +53,8 @@ def shoutout():
         config['token'], config['token_secret'],
         config['consumer_key'], config['consumer_secret']))
 
-    statuses = json.loads(twitter.statuses.retweets_of_me(
-        count=100, include_user_entities=True))
+    statuses = twitter.statuses.retweets_of_me(
+        count=100, include_user_entities=True)
 
     today = datetime.date.today()
     screen_names = []
