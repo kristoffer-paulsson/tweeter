@@ -53,15 +53,14 @@ def shoutout():
         config['token'], config['token_secret'],
         config['consumer_key'], config['consumer_secret']))
 
-    statuses = twitter.statuses.retweets_of_me(
-        count=100, include_user_entities=True)
+    statuses = twitter.statuses.mentions_timeline(count=100)
 
     today = datetime.date.today()
     screen_names = []
     for i in statuses:
         created = datetime.datetime.strptime(
             i['created_at'], '%a %b %d %H:%M:%S +0000 %Y').date()
-        if today == created:  # FIX last 24 hours
+        if today == created and i['retweeted']:  # FIX last 24 hours
             screen_names.append('@' + i['user']['screen_name'])
 
     if len(screen_names):
@@ -69,7 +68,7 @@ def shoutout():
         twitter.statuses.update(
             status='Thank you for RT!\n\n' + ', '.join(screen_names))
 
-    return '', 200
+    return str(len(screen_names)), 200
 
 
 if __name__ == '__main__':
