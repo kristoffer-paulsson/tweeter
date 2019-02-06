@@ -1,16 +1,12 @@
 cron:
 - description: "Retweet bible quotes"
-  url: /retweet/quotes/12
-  schedule: every 2 hours
+  url: /retweet/quotes
+  schedule: every 60 minutes
 
 - description: "Retweet posts and videos"
-  url: /retweet/teachings/12
+  url: /retweet/teachings
   schedule: every 2 hours
 
 - description: "Retweet TNG book"
-  url: /retweet/promo/2
+  url: /retweet/promo
   schedule: every 12 hours
-
- - description: "Shout out for RT:s"
-   url: /shoutout
-   schedule: every day 23:50
